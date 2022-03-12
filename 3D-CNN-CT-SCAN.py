@@ -330,3 +330,15 @@ for i, metric in enumerate(["acc", "loss"]):
     ax[i].set_xlabel("epochs")
     ax[i].set_ylabel(metric)
     ax[i].legend(["train", "val"])
+
+# Load best weights.
+model.load_weights("3d_image_classification.h5")  # Gets the "best" model from before and uses it to make our prediction.
+prediction = model.predict(np.expand_dims(x_val[0], axis=0))[0]
+scores = [1 - prediction[0], prediction[0]] # Gets our normal/abnormal scores.
+
+class_names = ["normal", "abnormal"]
+for score, name in zip(scores, class_names):  # Prints the scores for normal and abnormal weightings.
+    print(
+        "This model is %.2f percent confident that CT scan is %s"
+        % ((100 * score), name)
+    )
