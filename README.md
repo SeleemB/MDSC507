@@ -45,11 +45,10 @@ Finally, the model may receive a single CT scan and and make predictions on it, 
 ```This model is 96.34 percent confident that CT scan is abnormal. ```
 
 ## Final Outputs
-The visualizations of the CT scans and CT scan slices.
-
-
+The outputs consist of many tables and information displayed to the user, indicating things including accuracy and other information such as how many scans of each type there are. The visualizations of the CT scans and CT scan slices are outputed and should appear as follows:
 
 The graphs of the unbiased model performance: model accuracy and loss for the training and validation sets.
+
 The analysis and results of confidence scores when analyzing a single CT scan, how confident the program is that the scan is normal and. abnormal
 
 ## Known Potential Issues of Code
