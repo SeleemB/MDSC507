@@ -45,11 +45,17 @@ Finally, the model may receive a single CT scan and and make predictions on it, 
 ```This model is 96.34 percent confident that CT scan is abnormal. ```
 
 ## Final Outputs
-The outputs consist of many tables and information displayed to the user, indicating things including accuracy and other information such as how many scans of each type there are. The visualizations of the CT scans and CT scan slices are outputed and should appear as follows:
+The outputs consist of many tables and information displayed to the user, indicating things including accuracy and other information such as how many scans of each type there are. Two visualizations, one of an single augmentated CT scan and one of a collection of augmented CT scan slices, are outputed and should appear as follows:
 
-The graphs of the unbiased model performance: model accuracy and loss for the training and validation sets.
+<img width="402" alt="CT Scan" src="https://user-images.githubusercontent.com/59544496/158037927-6c9df9d0-4520-48f2-856a-160dea02716d.png">
+<img width="886" alt="CT Scan Slices" src="https://user-images.githubusercontent.com/59544496/158037929-aa13216b-38b4-41cc-a8f1-0b85312a4798.png">
 
-The analysis and results of confidence scores when analyzing a single CT scan, how confident the program is that the scan is normal and. abnormal
+The graphs of the unbiased model performance, model accuracy and loss for the training and validation sets, should be simillar to the following:
+
+<img width="1205" alt="Model Preformance Graphs" src="https://user-images.githubusercontent.com/59544496/158037930-e4272636-c09b-4ed1-92ad-a66cc82a6a98.png">
+
+The program also outputs it's degree of confidence in the normality and abnormality of a single CT scan as follows:
+![results](https://user-images.githubusercontent.com/59544496/158038128-a0d1ede2-b446-406a-b4e8-a5a4575a1919.png)
 
 ## Known Potential Issues of Code
 One of known issues with the program is that the program’s OS module doesn’t check to see if the necessary files exist already. Thus, after the initial full run, it is unable to move past the “Downloading the MosMedData: Chest CT Scans with COVID-19 Related Findings” section, as the OS module cannot create a directory with the same name as the existing one created from the first run. To remedy this when re-running the code, either comment out this section, delete the downloaded files prior to rerunning the program, or simply run everything after this chunk of code, which should run successfully.
