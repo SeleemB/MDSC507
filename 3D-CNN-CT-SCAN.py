@@ -13,6 +13,9 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
+
+# Downloading the MosMedData: Chest CT Scans with COVID-19 Related Findings.
+
 # Download url of normal CT scans.
 url = "https://github.com/hasibzunair/3D-image-classification-tutorial/releases/download/v0.2/CT-0.zip"
 # Create a path to save the file to by combining the current working directory with the filename.
@@ -36,6 +39,9 @@ with zipfile.ZipFile("CT-0.zip", "r") as z_fp:
 
 with zipfile.ZipFile("CT-23.zip", "r") as z_fp:
     z_fp.extractall("./MosMedData/")
+
+    
+# Loading data and preprocessing.    
 
 # Import nibabel, which gives access to common medical and neuroimaging file formats.
 import nibabel as nib
@@ -113,6 +119,9 @@ abnormal_scan_paths = [
 print("CT scans with normal lung tissue: " + str(len(normal_scan_paths)))
 print("CT scans with abnormal lung tissue: " + str(len(abnormal_scan_paths)))
 
+
+# Build train and validate datasets.
+
 # Read and process the scans.
 # Each scan is resized across height, width, and depth and rescaled.
 abnormal_scans = np.array([process_scan(path) for path in abnormal_scan_paths])
@@ -133,6 +142,9 @@ print(
     "Number of samples in train and validation are %d and %d."
     % (x_train.shape[0], x_val.shape[0])
 )
+
+
+# Data augmentation.
 
 import random
 
@@ -198,7 +210,7 @@ validation_dataset = (
 # Import matplotlib.pyplot for visualization.
 import matplotlib.pyplot as plt
 
-# Set variables necessary for visualization of one CT scan.
+# Set variables necessary for visualization of an augmented CT scan.
 data = train_dataset.take(1)
 images, labels = list(data)[0]
 images = images.numpy()
@@ -239,6 +251,8 @@ def plot_slices(num_rows, num_columns, width, height, data):
 # 4 rows and 10 columns for 100 slices of the CT scan.
 plot_slices(4, 10, 128, 128, image[:, :, :40])
 
+
+# Define a 3D convolutional neural network.
 
 def get_model(width=128, height=128, depth=64):
     """Build a 3D convolutional neural network model."""
@@ -289,6 +303,8 @@ def get_model(width=128, height=128, depth=64):
 model = get_model(width=128, height=128, depth=64)
 model.summary()
 
+# Train model.
+
 # Compile model.
 initial_learning_rate = 0.0001  # Sets initial learning rate.
 lr_schedule = keras.optimizers.schedules.ExponentialDecay(
@@ -318,6 +334,9 @@ model.fit(
     callbacks=[checkpoint_cb, early_stopping_cb],
 )
 
+
+# Visualizing model performance.
+
 # Creates two subplots to graph upon.
 fig, ax = plt.subplots(1, 2, figsize=(20, 3))
 ax = ax.ravel()
@@ -330,6 +349,9 @@ for i, metric in enumerate(["acc", "loss"]):
     ax[i].set_xlabel("epochs")
     ax[i].set_ylabel(metric)
     ax[i].legend(["train", "val"])
+
+    
+# Make predictions on a single CT scan.
 
 # Load best weights.
 model.load_weights("3d_image_classification.h5")  # Gets the "best" model from before and uses it to make our prediction.
