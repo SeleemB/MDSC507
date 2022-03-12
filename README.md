@@ -45,16 +45,18 @@ Finally, the model may receive a single CT scan and and make predictions on it, 
 ```This model is 96.34 percent confident that CT scan is abnormal. ```
 
 ## Final Outputs
-The outputs consist of many tables and information displayed to the user, indicating things including accuracy and other information such as how many scans of each type there are. Two visualizations, one of an single augmentated CT scan and one of a collection of augmented CT scan slices, are outputed and should appear as follows:
+The outputs consist of many tables and information displayed to the user, indicating things including accuracy and other information such as how many scans of each type there are. First, the program outputs where it is downloading data from and its progress. Then the number of normal and abnormal CT scans that are available to the program are shown. Two visualizations, one of an single augmentated CT scan and one of a collection of augmented CT scan slices, are outputed and should appear as follows:
 
 <img width="402" alt="CT Scan" src="https://user-images.githubusercontent.com/59544496/158037927-6c9df9d0-4520-48f2-856a-160dea02716d.png">
 <img width="886" alt="CT Scan Slices" src="https://user-images.githubusercontent.com/59544496/158037929-aa13216b-38b4-41cc-a8f1-0b85312a4798.png">
 
-The graphs of the unbiased model performance, model accuracy and loss for the training and validation sets, should be simillar to the following:
+A table showing each layer type of the data during the process of defining the 3D CNN, such as batch normalization and max pooling, that layer's dimensions or "shape" and the number of parameters involved in it is displayed. This is followed by showing the total number of paramters, the number of parameters that are trainable and the number of parameters that are non-trainable. While training the model, each epoch run is displayed, such as epoch 1/15, along with its loss, accuracy, value of loss and value of accuracy of that epoch, as well as the time taken for that epoch and time per step of that epoch. The loss should decrease and the accuracy should increase as more epochs are processed, indicating improved accuracy of the machine learning CNN algorithm.
+
+Then, the graphs of the unbiased model performance, model accuracy and loss for the training and validation sets are shown, simillarly to the following:
 
 <img width="1205" alt="Model Preformance Graphs" src="https://user-images.githubusercontent.com/59544496/158037930-e4272636-c09b-4ed1-92ad-a66cc82a6a98.png">
 
-The program also outputs it's degree of confidence in the normality and abnormality of a single CT scan as follows:
+The program finally makes predictions on a single CT scan and outputs it's degree of confidence in the normality and abnormality of that scan as follows:
 ![results](https://user-images.githubusercontent.com/59544496/158038128-a0d1ede2-b446-406a-b4e8-a5a4575a1919.png)
 
 ## Known Potential Issues of Code
